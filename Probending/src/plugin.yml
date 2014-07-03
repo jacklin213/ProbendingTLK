@@ -1,0 +1,10 @@
+name: Probending
+main: probending.Probending
+version: 0.0.1
+commands:
+   Probending:
+      description: Probending
+      aliases: [pb, pr]
+      depend: [WorldEdit, WGRegionEvents]
+   spawn:
+      description: go to spawn

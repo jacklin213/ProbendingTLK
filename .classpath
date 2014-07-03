@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Probending/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Shawn/Documents/Bending Plugins/WGRegionEvents.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shawn/Documents/Bending Plugins/WorldEdit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shawn/Documents/Bending Plugins/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shawn/Documents/LocalServer/BukkitForPlugins.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
