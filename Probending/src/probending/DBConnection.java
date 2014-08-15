@@ -1,14 +1,8 @@
 package probending;
 
-import probending.Storage.MySQL;
 import probending.Storage.Database;
+import probending.Storage.MySQL;
 import probending.Storage.SQLite;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 public class DBConnection {
 	
@@ -24,9 +18,9 @@ public class DBConnection {
 
 	public static void init() {
 		if (plugin.getConfig().getString("Storage.engine").equalsIgnoreCase("mysql")) {
-			sql = new MySQL(Probending.logger, "[Probending] Establishing MySQL Connection...", host, port, user, pass, db);
+			sql = new MySQL(Probending.log, "Establishing MySQL Connection...", host, port, user, pass, db);
 			((MySQL) sql).open();
-			Probending.logger.info("[Probending] Database connection established.");
+			Probending.log.info("Database connection established.");
 			
 			if (!sql.tableExists("Probending_Players")) {
 				String query = "CREATE TABLE `Probending_Players` ("
@@ -56,7 +50,7 @@ public class DBConnection {
 				sql.modifyQuery(query);
 			}
 		} else { // We'll default to SQLite
-			sql = new SQLite(Probending.logger, "[Probending] Establishing SQLite Connection.", "probending.db", Probending.instance.getDataFolder().getAbsolutePath());
+			sql = new SQLite(Probending.log, "Establishing SQLite Connection.", "probending.db", Probending.instance.getDataFolder().getAbsolutePath());
 			((SQLite) sql).open();
 			
 			if (!sql.tableExists("Probending_Players")) {

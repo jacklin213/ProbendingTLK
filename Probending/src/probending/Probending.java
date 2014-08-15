@@ -1,25 +1,24 @@
 package probending;
 
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class Probending extends JavaPlugin{
 	
 	public static Probending instance;
-    public static final Logger logger = Logger.getLogger("minecraft");
+    public static Logger log;
     private PBGameStart gamestart;
     private PBScoreBoard scoreboard;
     private PBTeleporter teleporter;
-    private static Probending plugin;
     private WorldEditPlugin worldEdit;
     private WorldGuardPlugin worldGuard;
     private DBConnection pbdatabase;
@@ -28,10 +27,11 @@ public class Probending extends JavaPlugin{
     @Override
     public void onEnable() {
     	instance = this;
+    	log = getLogger();
+    	
     	new Methods(this);
         Methods.configCheck();
-        PluginDescriptionFile pdfFile = this.getDescription();
-        Probending.logger.log(Level.INFO, ChatColor.GREEN + "{0} has been enabled!", pdfFile.getName());
+        
         worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
         worldGuard = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
 //        configManager = new PBConfigManager("config"); 
@@ -47,6 +47,8 @@ public class Probending extends JavaPlugin{
         DBConnection.db = getConfig().getString("Storage.database");
         DBConnection.user = getConfig().getString("Storage.user");
         DBConnection.pass = getConfig().getString("Storage.password");
+        
+        DBConnection.init();
     }
     
     @Override
@@ -206,8 +208,6 @@ public class Probending extends JavaPlugin{
     
     @Override
     public void onDisable() {
-        PluginDescriptionFile pdfFile = this.getDescription();
-        this.logger.log(Level.INFO, ChatColor.RED + "{0} has been disabled!", pdfFile.getName());
     }
     
     public static Probending getInstance() {
