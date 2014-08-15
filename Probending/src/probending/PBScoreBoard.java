@@ -47,23 +47,23 @@ public class PBScoreBoard{
             Scoreboard s = player.getScoreboard();
             Objective objectiveSidebar = s.getObjective(DisplaySlot.SIDEBAR);
             Objective objectiveWins = s.getObjective(DisplaySlot.BELOW_NAME);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.BOLD + "Your profile:")).setScore(13);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Wins1: " + ChatColor.AQUA + Methods.getWinScore1v1(player))).setScore(12);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Wins3: " + ChatColor.AQUA + Methods.getWinScore3v3(player))).setScore(11);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Rating: " + ChatColor.AQUA + Methods.getRating(player))).setScore(10);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.BOLD + "Team profile:")).setScore(9);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Team: " + ChatColor.AQUA + Methods.getTeam(player))).setScore(8);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Games: " + ChatColor.AQUA + Methods.getTeamGames(player))).setScore(7);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Wins: " + ChatColor.AQUA + Methods.getTeamWins(player))).setScore(6);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.BOLD + "Your balances:")).setScore(5);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Coins: " + ChatColor.AQUA + Methods.getCoins(player))).setScore(4);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "")).setScore(3);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.BOLD + "Games:")).setScore(2);
-            objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Game: " + ChatColor.DARK_RED + "none")).setScore(1);
+            objectiveSidebar.getScore(ChatColor.BOLD + "Your profile:").setScore(13);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Wins1: " + ChatColor.AQUA + Methods.getWinScore1v1(player)).setScore(12);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Wins3: " + ChatColor.AQUA + Methods.getWinScore3v3(player)).setScore(11);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Rating: " + ChatColor.AQUA + Methods.getRating(player)).setScore(10);
+            objectiveSidebar.getScore(ChatColor.BOLD + "Team profile:").setScore(9);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Team: " + ChatColor.AQUA + Methods.getTeam(player)).setScore(8);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Games: " + ChatColor.AQUA + Methods.getTeamGames(player)).setScore(7);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Wins: " + ChatColor.AQUA + Methods.getTeamWins(player)).setScore(6);
+            objectiveSidebar.getScore(ChatColor.BOLD + "Your balances:").setScore(5);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Coins: " + ChatColor.AQUA + Methods.getCoins(player)).setScore(4);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "").setScore(3);
+            objectiveSidebar.getScore(ChatColor.BOLD + "Games:").setScore(2);
+            objectiveSidebar.getScore(ChatColor.YELLOW + "Game: " + ChatColor.DARK_RED + "none").setScore(1);
             objectiveWins.getScore(player).setScore(Methods.getRating(player));
             
-            player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Wins1: " + ChatColor.AQUA + (Methods.getWinScore1v1(player)-1)));
-            player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Wins3: " + ChatColor.AQUA + (Methods.getWinScore3v3(player)-1)));
+            player.getScoreboard().resetScores(ChatColor.YELLOW + "Wins1: " + ChatColor.AQUA + (Methods.getWinScore1v1(player)-1));
+            player.getScoreboard().resetScores(ChatColor.YELLOW + "Wins3: " + ChatColor.AQUA + (Methods.getWinScore3v3(player)-1));
         }
     }
     

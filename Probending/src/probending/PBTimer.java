@@ -42,13 +42,13 @@ public class PBTimer {
     public void stop() {
         updater.cancel();
         for (Player player : Bukkit.getServer().getOnlinePlayers())
-            player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time)));
+            player.getScoreboard().resetScores(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time));
     }
 
     private void updateTime() {
         if (time == 1) {
             for (Player player : Bukkit.getServer().getOnlinePlayers())
-                player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time)));
+                player.getScoreboard().resetScores(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time));
             execute();
         } else {
             setTime(time - 1, PreGame);
@@ -76,11 +76,11 @@ public class PBTimer {
     private void clearTime() {
         if (showTimes) {
             for (Player player : Bukkit.getServer().getOnlinePlayers()){
-                player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time + 1)));
+                player.getScoreboard().resetScores(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + (time + 1));
                 Scoreboard s = player.getScoreboard();
                 Objective objectiveSidebar = s.getObjective(DisplaySlot.SIDEBAR);
-                objectiveSidebar.getScore(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + time)).setScore(1);
-                player.getScoreboard().resetScores(Bukkit.getOfflinePlayer(ChatColor.YELLOW + "Game: " + ChatColor.DARK_RED + "none"));
+                objectiveSidebar.getScore(ChatColor.YELLOW + "Time: " + ChatColor.AQUA + time).setScore(1);
+                player.getScoreboard().resetScores(ChatColor.YELLOW + "Game: " + ChatColor.DARK_RED + "none");
             }
         }
     }
