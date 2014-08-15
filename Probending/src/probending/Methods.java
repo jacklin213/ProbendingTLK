@@ -13,7 +13,23 @@ public class Methods {
 		Methods.plugin = plugin;
 	}
 	
-	public static void configCheck() {
+	/*
+	 * Everything below this line is for the Database Functions
+	 */
+	
+	public static void addWin1(Player player){
+    	int currWins = getWinScore1v1(player);
+    	int newWins = currWins + 1;
+    	DBConnection.sql.modifyQuery("UPDATE Probending_Players SET wins1 = " + newWins + " WHERE playername = '" + player.getName() + "'");
+    }
+	
+	public static void addWin3(Player player){
+    	int currWins = getWinScore3v3(player);
+    	int newWins = currWins + 1;
+    	DBConnection.sql.modifyQuery("UPDATE Probending_Players SET wins3 = " + newWins + " WHERE playername = '" + player.getName() + "'");
+    }
+	
+    public static void configCheck() {
 		FileConfiguration c = plugin.getConfig();
 		
 		c.addDefault("Storage.engine", "sqlite");
@@ -26,43 +42,6 @@ public class Methods {
 		c.options().copyDefaults(true);
 		plugin.saveConfig();
 	}
-	
-	/*
-	 * Everything below this line is for the Database Functions
-	 */
-
-    //Everything the database can do \/    
-    public static void insertPlayerToDatabase(Player player){
-    	DBConnection.sql.modifyQuery("INSERT INTO Probending_Players('uuid', 'playername', 'wins1', 'wins3', 'coins', 'rating') VALUES ('" + player.getUniqueId().toString() + "', '" + player.getName() + "', " + 0 + ", " + 0 + ", " + 0 + ", " + 1000 + ");");
-    }
-    
-    public static int getWinScore1v1(Player player){
-        int i = 0;
-        ResultSet rs2 = DBConnection.sql.readQuery("SELECT * FROM Probending_Players WHERE playername = '" + player.getName() + "'");
-        try {
-        	if (rs2.next()) {
-        		i = rs2.getInt("wins1");
-        	}
-        } catch (SQLException e) {
-        	e.printStackTrace();
-        }
-        return i;
-
-    }
-    
-    public static int getWinScore3v3(Player player){
-        int i = 0;
-        
-        ResultSet rs2 = DBConnection.sql.readQuery("SELECT * FROM Probending_Players WHERE playername = '" + player.getName() + "'");
-        try {
-        	if (rs2.next()) {
-        		i = rs2.getInt("wins3");
-        	}
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return i;
-    }
     
     public static int getCoins(Player player){
         int i = 0;
@@ -134,16 +113,37 @@ public class Methods {
         return teamWins;
     }
     
-    public static void addWin1(Player player){
-    	int currWins = getWinScore1v1(player);
-    	int newWins = currWins + 1;
-    	DBConnection.sql.modifyQuery("UPDATE Probending_Players SET wins1 = " + newWins + " WHERE playername = '" + player.getName() + "'");
+    public static int getWinScore1v1(Player player){
+        int i = 0;
+        ResultSet rs2 = DBConnection.sql.readQuery("SELECT * FROM Probending_Players WHERE playername = '" + player.getName() + "'");
+        try {
+        	if (rs2.next()) {
+        		i = rs2.getInt("wins1");
+        	}
+        } catch (SQLException e) {
+        	e.printStackTrace();
+        }
+        return i;
+
     }
     
-    public static void addWin3(Player player){
-    	int currWins = getWinScore3v3(player);
-    	int newWins = currWins + 1;
-    	DBConnection.sql.modifyQuery("UPDATE Probending_Players SET wins3 = " + newWins + " WHERE playername = '" + player.getName() + "'");
+    public static int getWinScore3v3(Player player){
+        int i = 0;
+        
+        ResultSet rs2 = DBConnection.sql.readQuery("SELECT * FROM Probending_Players WHERE playername = '" + player.getName() + "'");
+        try {
+        	if (rs2.next()) {
+        		i = rs2.getInt("wins3");
+        	}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return i;
     }
-
+    
+    //Everything the database can do \/    
+    public static void insertPlayerToDatabase(Player player){
+    	DBConnection.sql.modifyQuery("INSERT INTO Probending_Players('uuid', 'playername', 'wins1', 'wins3', 'coins', 'rating') VALUES ('" + player.getUniqueId().toString() + "', '" + player.getName() + "', " + 0 + ", " + 0 + ", " + 0 + ", " + 1000 + ");");
+    }
+    
 }
